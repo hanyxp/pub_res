@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>jungle-parent</artifactId>
+        <groupId>com.tencent.jungle</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <groupId>qiqi_cgi_hanyxp</groupId>
+    <artifactId>qiqi_cgi_hanyxp</artifactId>
+    <packaging>war</packaging>
+    <version>1.0-SNAPSHOT</version>
+
+    <profiles>
+        <!-- 默认测试配置-->
+        <profile>
+            <id>test</id>
+            <properties>
+                <!-- redis config -->
+                <redis-server>118.26.153.246</redis-server>
+                <redis-port>6379</redis-port>
+                <!-- db backstage config -->
+                <db-url-backstage>221.6.123.162</db-url-backstage>
+                <db-port-backstage>18991</db-port-backstage>
+                <db-name-backstage>qxiu_backstage</db-name-backstage>
+                <db-user-backstage>room_user</db-user-backstage>
+                <db-pwd-backstage>WB]-fvgb]QVT</db-pwd-backstage>
+                <!-- db staruser config -->
+                <db-url-staruser>118.26.153.98</db-url-staruser>
+                <db-port-staruser>18991</db-port-staruser>
+                <db-name-staruser>guagua_staruser_qq</db-name-staruser>
+                <db-user-staruser>sa</db-user-staruser>
+                <db-pwd-staruser>bGI34EOD8g3Ome23Ire1</db-pwd-staruser>
+                <!-- db rdcRoom config -->
+                <db-url-rdcRoom>221.6.123.162</db-url-rdcRoom>
+                <db-port-rdcRoom>18991</db-port-rdcRoom>
+                <db-name-rdcRoom>RDCRoomManageDB</db-name-rdcRoom>
+                <db-user-rdcRoom>room_user</db-user-rdcRoom>
+                <db-pwd-rdcRoom>WB]-fvgb]QVT</db-pwd-rdcRoom>
+                <!-- jungle.xml文件中的数据 -->
+                <jungle-zookeeper-addr>121.201.62.48:2181</jungle-zookeeper-addr>
+                <jungle-zookeeper-config-host>121.201.62.48:2181</jungle-zookeeper-config-host>
+                <!-- 日志 -->
+                <log4j-rootCategory-debug><![CDATA[log4j.rootCategory=debug,Console, DebugLog, ErrorLog]]></log4j-rootCategory-debug>
+                <log4j-rootCategory-error><![CDATA[#log4j.rootCategory=info, ErrorLog]]></log4j-rootCategory-error>
+            </properties>
+        </profile>
+        <!-- 生产配置 -->
+        <profile>
+            <id>product</id>
+            <activation><activeByDefault>true</activeByDefault></activation>
+            <properties>
+                <!-- redis config -->
+                <redis-server>192.168.5.44</redis-server>
+                <redis-port>6379</redis-port>
+                <!-- db backstage config -->
+                <db-url-backstage>192.168.4.26</db-url-backstage>
+                <db-port-backstage>18991</db-port-backstage>
+                <db-name-backstage>qxiu_backstage</db-name-backstage>
+                <db-user-backstage>ManagerUser</db-user-backstage>
+                <db-pwd-backstage>bkw50pXhe39Ms5p*1diOp</db-pwd-backstage>
+                <!-- db staruser config -->
+                <db-url-staruser>192.168.4.37</db-url-staruser>
+                <db-port-staruser>18991</db-port-staruser>
+                <db-name-staruser>guagua_staruser_qq</db-name-staruser>
+                <db-user-staruser>staruser_qq_user</db-user-staruser>
+                <db-pwd-staruser>mOD8gIrlY3OIrlY</db-pwd-staruser>
+                <!-- db rdcRoom config -->
+                <db-url-rdcRoom>192.168.4.26</db-url-rdcRoom>
+                <db-port-rdcRoom>18991</db-port-rdcRoom>
+                <db-name-rdcRoom>RDCRoomManageDB</db-name-rdcRoom>
+                <db-user-rdcRoom>ManagerUser</db-user-rdcRoom>
+                <db-pwd-rdcRoom>bkw50pXhe39Ms5p*1diOp</db-pwd-rdcRoom>
+                <!-- jungle.xml文件中的数据 -->
+                <jungle-zookeeper-addr>172.24.9.59:2181,172.24.9.59:2182,172.24.9.59:2183</jungle-zookeeper-addr>
+                <jungle-zookeeper-config-host>172.24.9.59:2181,172.24.9.59:2182,172.24.9.59:2183</jungle-zookeeper-config-host>
+                <!-- 日志 -->
+                <log4j-rootCategory-debug><![CDATA[#log4j.rootCategory=debug,Console, DebugLog, ErrorLog]]></log4j-rootCategory-debug>
+                <log4j-rootCategory-error><![CDATA[log4j.rootCategory=info, ErrorLog]]></log4j-rootCategory-error>
+            </properties>
+        </profile>
+    </profiles>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.tencent.jungle</groupId>
+            <artifactId>jungle-web-core</artifactId>
+            <version>0.0.5-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.tencent.jungle</groupId>
+            <artifactId>jungle-db</artifactId>
+            <version>0.0.2-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>4.0.25.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>14.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpasyncclient</artifactId>
+            <version>4.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>3.1</version>
+        </dependency>
+        <!-- 我的工具包 -->
+        <dependency>
+            <groupId>com.qxiu</groupId>
+            <artifactId>qxiu_tools</artifactId>
+            <version>0.0.13</version>
+        </dependency>
+        <dependency>
+            <groupId>com.qxiu</groupId>
+            <artifactId>qiqi_op_global</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>qiqi_cgi_hanyxp</finalName>
+        <!-- 默认的资源路径 -->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <!-- 是否通过profile处理 -->
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>tomcat-maven-plugin</artifactId>
+                <version>1.1</version>
+                <configuration>
+                    <port>8080</port>
+                    <path>/</path>
+                    <uriEncoding>UTF-8</uriEncoding>
+                    <server>tomcat6</server>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.1</version>
+                <configuration>
+                    <port>8080</port>
+                    <path>/</path>
+                    <uriEncoding>UTF-8</uriEncoding>
+                    <server>tomcat7</server>
+                </configuration>
+            </plugin>
+
+            <!-- 扩展源代码和资源文件目录 -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <id>add-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <!-- 我们可以通过在这里添加多个source节点，来添加任意多个源文件夹 -->
+                                <!-- 自动生成的 -->
+                                <source>${basedir}/src/main/auto</source>
+                                <!-- 生成的proto协议 -->
+                                <source>${basedir}/src/main/proto</source>
+                                <!-- 生成的fuck协议 -->
+                                <!-- <source>${basedir}/src/main/fuck</source> -->
+                            </sources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>add-resource</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>add-resource</goal>
+                        </goals>
+                        <configuration>
+                            <resources> <!-- 我们可以通过在这里添加多个resource节点 -->
+                                <resource>
+                                    <directory>${basedir}/src/main/auto</directory>
+                                    <includes>
+                                        <include>**/*.xml</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.3.2</version>
+                <configuration>
+                    <verbose>true</verbose>
+                    <overwrite>true</overwrite>
+                </configuration>
+                <dependencies>
+                    <!-- 自己写的插件 -->
+                    <dependency>
+                        <groupId>com.qxiu</groupId>
+                        <artifactId>qxiu_mybatis_generator_tools</artifactId>
+                        <version>1.0.0-SNAPSHOT</version>
+                    </dependency>
+                    <!-- 驱动依赖 -->
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>5.1.8</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>net.sourceforge.jtds</groupId>
+                        <artifactId>jtds</artifactId>
+                        <version>1.2.4</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.oracle</groupId>
+                        <artifactId>ojdbc14</artifactId>
+                        <version>10.2.0.4.0</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.microsoft.sqlserver</groupId>
+                        <artifactId>sqljdbc4</artifactId>
+                        <version>4.0</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+        </plugins>
+    </build>
+</project>
