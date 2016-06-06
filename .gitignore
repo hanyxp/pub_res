@@ -8,3 +8,4 @@ hanyxp
 src/test/
 *.iml
 /target/
+/src/main/resources/generatorConfig.xml

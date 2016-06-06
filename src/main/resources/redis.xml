@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configs>
+	<config>
+		<name>default</name>
+		<server>${redis-server}</server>
+		<port>${redis-port}</port>
+		<max_active>1000</max_active><!-- 这种对象最多可实例化多少个 -->
+		<max_idle>400</max_idle><!-- 池里面最多有多少个（池里面的是空闲的） -->
+		<min_idle>20</min_idle><!-- 池里面最少有多少个（池里面的是空闲的） -->
+		<max_wait>3</max_wait><!-- 过多少秒超时 -->
+	</config>
+
+</configs>
