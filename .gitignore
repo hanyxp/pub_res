@@ -1,11 +1,10 @@
-
-.idea/
-hanyxp
-hanyxp.pub
-src/test/
-test.iml
-
-#win
+### win
 Thumbs.db
 ehthumbs.db
 Desktop.ini
+
+.idea/
+hanyxp
+src/test/
+*.iml
+/target/
