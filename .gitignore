@@ -1,0 +1,11 @@
+
+.idea/
+hanyxp
+hanyxp.pub
+src/test/
+test.iml
+
+#win
+Thumbs.db
+ehthumbs.db
+Desktop.ini
